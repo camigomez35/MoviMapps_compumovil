@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">"MovieMapps"</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="about">About</string>
+
+    <string name="map">Nearby cinemas</string>
+    <string name="showtimes">Showtimes</string>
+    <string name="movie_with_friends">Movies with your friends</string>
+
+    <string name="facebook_app_id">515584671961002</string>
+    <string name="fb_login_protocol_scheme">fb515584671961002</string>
+    <string name="api_key">d4aadc42b63f7a1565bffa6dd41f1bfc</string>
+
+</resources>

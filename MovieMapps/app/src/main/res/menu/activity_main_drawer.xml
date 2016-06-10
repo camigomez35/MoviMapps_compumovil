@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/showtimes"
+            android:icon="@mipmap/cine"
+            android:title="@string/showtimes" />
+        <item
+            android:id="@+id/make_plan"
+            android:icon="@mipmap/amigos"
+            android:title="@string/movie_with_friends" />
+        <item
+            android:id="@+id/map"
+            android:icon="@mipmap/map"
+            android:title="@string/map" />
+    </group>
+
+</menu>
