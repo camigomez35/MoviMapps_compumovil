@@ -27,7 +27,9 @@ public class ServiceResult {
     @JsonProperty("page")
     private Integer page;
     @JsonProperty("results")
-    private List<Movie> results = new ArrayList<Movie>();
+    private List<Movie> results = new ArrayList<>();
+    @JsonProperty("resultsClassification")
+    private List<Classification> resultsClassification = new ArrayList<>();
     @JsonProperty("total_pages")
     private Integer totalPages;
     @JsonProperty("total_results")
@@ -48,6 +50,16 @@ public class ServiceResult {
     @JsonProperty("results")
     public void setResults(List<Movie> results) {
         this.results = results;
+    }
+
+    @JsonProperty("resultsClassification")
+    public void setResultsClassfication(List<Classification> results) {
+        this.resultsClassification = results;
+    }
+
+    @JsonProperty("resultsClassification")
+    public List<Classification> getResultsClassfication() {
+        return resultsClassification;
     }
 
     @JsonProperty("total_pages")

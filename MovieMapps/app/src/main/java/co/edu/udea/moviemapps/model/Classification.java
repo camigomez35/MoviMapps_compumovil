@@ -1,15 +1,20 @@
 package co.edu.udea.moviemapps.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by SA on 03/06/2016.
  */
 public class Classification {
+    Integer id;
     int valor;
     int idMovie;
     Long idUsuario;
 
+    public Integer getId() {return id;}
+
+    public void setId(Integer id) {this.id = id;}
 
     public int getValor() {
         return valor;
@@ -33,5 +38,15 @@ public class Classification {
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Classification{" +
+                "id=" + id +
+                ", valor=" + valor +
+                ", idMovie=" + idMovie +
+                ", idUsuario=" + idUsuario +
+                '}';
     }
 }

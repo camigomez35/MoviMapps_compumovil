@@ -22,14 +22,14 @@ public class ClassificationDataManager {
     }
 
     public void saveClassification(Classification classification){
+        Log.e("INFO @@@", classification.getIdMovie()+ "  "+ classification.getValor()+ "  "+ classification.getIdUsuario());
         MovieMappsService.getInstance().saveClassification(classification).enqueue(new Callback<ServiceResult>() {
             @Override
             public void onResponse(Call<ServiceResult> call, Response<ServiceResult> response) {
                 Call callResponse = call;
                 Response responseService = response;
-                Log.i("Good", responseService.message());
+                Log.i("Good @@@@@", responseService.message());
             }
-
 
             @Override
             public void onFailure(Call<ServiceResult> call, Throwable t) {
@@ -37,4 +37,21 @@ public class ClassificationDataManager {
             }
         });
     }
+
 }
+
+/*
+new Callback<ServiceResult>() {
+@Override
+public void onResponse(Call<ServiceResult> call, Response<ServiceResult> response) {
+        Call callResponse = call;
+        Response responseService = response;
+        Log.i("Good @@@@@", responseService.message());
+        }
+
+
+@Override
+public void onFailure(Call<ServiceResult> call, Throwable t) {
+        Log.i("Bad","Error" + t.getMessage());
+        }
+        } */

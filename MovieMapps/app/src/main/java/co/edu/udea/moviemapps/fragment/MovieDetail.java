@@ -14,7 +14,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.mockito.internal.matchers.Null;
+
 import java.util.List;
+
 import co.edu.udea.moviemapps.R;
 import co.edu.udea.moviemapps.activities.MovieMapps;
 import co.edu.udea.moviemapps.model.Classification;
@@ -34,6 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MovieDetail extends Fragment implements View.OnClickListener {
     public static final int ID = 2;
     public static final String MOVIE_ARG_ID = "movieId";
+    public Integer idRelacion;
     public String apiKey = "d4aadc42b63f7a1565bffa6dd41f1bfc";
     public Classification classification;
     public List<Classification> classifications;
@@ -43,6 +48,7 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
     private int movieId, likesCount, dislikesCount;
     private Button btShare;
     private String title, text;
+    private List<Classification> classificationLikes;
 
 
     public static final String BASE_URL = "http://moviemappssw-samsax.c9users.io:8080/";
@@ -81,8 +87,13 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
         movieTitle = (TextView) view.findViewById(R.id.movie_title);
         like  = (ImageButton) view.findViewById(R.id.like);
         dislike = (ImageButton) view.findViewById(R.id.dislike);
+
+
         likes = (TextView) view.findViewById(R.id.likes);
         dislikes = (TextView) view.findViewById(R.id.dislikes);
+
+
+
         like.setOnClickListener(this);
         dislike.setOnClickListener(this);
         btShare = (Button) view.findViewById(R.id.share);
@@ -94,26 +105,11 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.like:
-                classification = new Classification();
-                classification.setIdMovie(movieId);
-                classification.setIdUsuario(MovieMapps.getUser().getId());
-                classification.setValor(Integer.parseInt("1"));
-                ClassificationDataManager.getInstance().saveClassification(classification);
-                likesCount = likesCount +1;
-                likes.setText("Like: " + likesCount);
-                setBackground();
-                Toast.makeText(this.getContext(), "+1", Toast.LENGTH_SHORT).show();
+
+                    like(1);
                 break;
             case R.id.dislike:
-                classification = new Classification();
-                classification.setIdMovie(movieId);
-                classification.setIdUsuario(MovieMapps.getUser().getId());
-                classification.setValor(Integer.parseInt("2"));
-                ClassificationDataManager.getInstance().saveClassification(classification);
-                dislikesCount = dislikesCount +1;
-                dislikes.setText("Like: "+ dislikesCount);
-                setBackground();
-                Toast.makeText(this.getContext(), "-1", Toast.LENGTH_SHORT).show();
+                    like(2);
                 break;
             case R.id.share:
                 Intent shareIntent = new Intent();
@@ -203,6 +199,36 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
                 Log.i("Calificar", "Error" + t.getMessage());
             }
         });
+
+        Call<List<Classification>> callback = apiService.getClassificationMovie(MovieMapps.getUser().getId(), movieId);
+        callback.enqueue(new Callback<List<Classification>>() {
+            @Override
+            public void onResponse(Call<List<Classification>> call, Response<List<Classification>> response) {
+                Log.i("EndPoint", "onResponse: ");
+                List<Classification> clasificaciones = response.body();
+
+                if(!clasificaciones.isEmpty()){
+                    idRelacion = clasificaciones.get(0).getId();
+                    if (clasificaciones.get(0).getValor() == 1){
+                        like.setEnabled(false);
+                        dislike.setEnabled(true);
+                    }else{
+                        like.setEnabled(true);
+                        dislike.setEnabled(false);
+                    }
+                }else{
+
+                    like.setEnabled(true);
+                    dislike.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Classification>> call, Throwable t) {
+                Log.i("EndPoint", "onFailure: ");
+            }
+        });
+
     }
 
     public void setBackground(){
@@ -215,5 +241,59 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
         }
 
     }
+
+    public void like(int valorLike){
+        classification = new Classification();
+        classification.setIdMovie(movieId);
+        classification.setIdUsuario(MovieMapps.getUser().getId());
+        classification.setValor(valorLike);
+
+        if(valorLike == 1) {
+            likesCount = likesCount +1;
+            likes.setText("Like: " + likesCount);
+            like.setEnabled(false);
+            dislike.setEnabled(true);
+            if(!dislike.isEnabled()){
+                dislikesCount = dislikesCount -1;
+                dislikes.setText("Dislike: "+ dislikesCount);
+                actualizar(classification);
+            }else{
+                ClassificationDataManager.getInstance().saveClassification(classification);
+            }
+            setBackground();
+            Toast.makeText(this.getContext(), "+1", Toast.LENGTH_SHORT).show();
+        }else if(valorLike == 2){
+            dislikesCount = dislikesCount +1;
+            dislikes.setText("Dislike: "+ dislikesCount);
+            like.setEnabled(true);
+            dislike.setEnabled(false);
+            if(!like.isEnabled()){
+                dislikesCount = likesCount -1;
+                likes.setText("Like: " + likesCount);
+                actualizar(classification);
+            }else{
+                ClassificationDataManager.getInstance().saveClassification(classification);
+            }
+            setBackground();
+            Toast.makeText(this.getContext(), "-1", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void actualizar(Classification classification) {
+        MovieMappsServiceI apiService = retrofit.create(MovieMappsServiceI.class);
+        Call <Classification> call = apiService.updateClassification(idRelacion, classification);
+        call.enqueue(new Callback<Classification>() {
+            @Override
+            public void onResponse(Call<Classification> call, Response<Classification> response) {
+                Log.e("Exitoso ", "onResponse: " );
+            }
+
+            @Override
+            public void onFailure(Call<Classification> call, Throwable t) {
+                Log.e("Error ", "onFailure: ");
+            }
+        });
+    }
+
 }
 
