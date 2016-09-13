@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#c979686e</color>
     <color name="transparencia_blanca_77FFFFFF">#77FFFFFF</color>
     <color name="colorBarckGroundTitle">#78909C</color>
 </resources>

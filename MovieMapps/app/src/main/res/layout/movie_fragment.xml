@@ -45,6 +45,27 @@
                 android:layout_alignParentBottom="true"
                 android:src="@color/transparencia_blanca_77FFFFFF"/>
 
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:padding="50dp"
+                android:background="@mipmap/checked"
+                android:id="@+id/checkLike"
+                android:src="@color/secondary_text_disabled_material_light"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:visibility="invisible" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@mipmap/checked"
+                android:padding="50dp"
+                android:id="@+id/checkDislike"
+                android:layout_alignParentTop="true"
+                android:layout_alignEnd="@+id/dislike"
+                android:visibility="invisible" />
+
 
         </RelativeLayout>
 
@@ -113,13 +134,16 @@
             android:layout_centerHorizontal="true" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="304dp"
             android:layout_height="wrap_content"
             android:text="Let's go to the cinema!"
-            android:drawableLeft="@drawable/com_facebook_button_send_icon_white"
             android:id="@+id/share"
             android:layout_gravity="center_horizontal"
-            android:background="#4b48e5" />
+            android:background="@drawable/com_facebook_button_like_background"
+            android:contextClickable="false"
+            android:drawableRight="@drawable/com_facebook_button_send_icon_white"
+            android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+            style="@style/MessengerButtonText.Blue.Large" />
 
 
 

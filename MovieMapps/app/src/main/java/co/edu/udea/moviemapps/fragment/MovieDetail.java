@@ -43,7 +43,7 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
     public Classification classification;
     public List<Classification> classifications;
     public ImageView moviePoster;
-    public ImageButton like, dislike;
+    public ImageButton like, dislike, checkLike, checkDislike;
     public TextView movieTitle, movieOverview, likes, dislikes;
     private int movieId, likesCount, dislikesCount;
     private Button btShare;
@@ -87,6 +87,8 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
         movieTitle = (TextView) view.findViewById(R.id.movie_title);
         like  = (ImageButton) view.findViewById(R.id.like);
         dislike = (ImageButton) view.findViewById(R.id.dislike);
+        checkLike = (ImageButton) view.findViewById(R.id.checkLike);
+        checkDislike = (ImageButton) view.findViewById(R.id.checkDislike);
 
 
         likes = (TextView) view.findViewById(R.id.likes);
@@ -211,9 +213,11 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
                     idRelacion = clasificaciones.get(0).getId();
                     if (clasificaciones.get(0).getValor() == 1){
                         like.setEnabled(false);
+                        checkLike.setVisibility(View.VISIBLE);
                         dislike.setEnabled(true);
                     }else{
                         like.setEnabled(true);
+                        checkDislike.setVisibility(View.VISIBLE);
                         dislike.setEnabled(false);
                     }
                 }else{
@@ -259,7 +263,9 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
                 ClassificationDataManager.getInstance().saveClassification(classification);
             }
             like.setEnabled(false);
+            checkLike.setVisibility(View.VISIBLE);
             dislike.setEnabled(true);
+            checkDislike.setVisibility(View.INVISIBLE);
             setBackground();
             Toast.makeText(this.getContext(), "+1", Toast.LENGTH_SHORT).show();
         }else if(valorLike == 2){
@@ -273,7 +279,9 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
                 ClassificationDataManager.getInstance().saveClassification(classification);
             }
             like.setEnabled(true);
+            checkLike.setVisibility(View.INVISIBLE);
             dislike.setEnabled(false);
+            checkDislike.setVisibility(View.VISIBLE);
             setBackground();
             Toast.makeText(this.getContext(), "-1", Toast.LENGTH_SHORT).show();
         }
@@ -294,6 +302,7 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
                      }
         );
     }
+
 
 }
 
