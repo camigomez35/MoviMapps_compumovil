@@ -34,6 +34,8 @@ public class ServiceResult {
     private Integer totalPages;
     @JsonProperty("total_results")
     private Integer totalResults;
+    @JsonProperty("id")
+    private Integer idCalificacion;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -55,6 +57,16 @@ public class ServiceResult {
     @JsonProperty("resultsClassification")
     public void setResultsClassfication(List<Classification> results) {
         this.resultsClassification = results;
+    }
+
+    @JsonProperty("id")
+    public Integer getIdCalificacion() {
+        return idCalificacion;
+    }
+
+    @JsonProperty("id")
+    public void setIdCalificacion(Integer idCalificacion) {
+        this.idCalificacion = idCalificacion;
     }
 
     @JsonProperty("resultsClassification")

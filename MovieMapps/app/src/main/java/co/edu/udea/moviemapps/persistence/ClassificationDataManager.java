@@ -17,18 +17,20 @@ import retrofit2.Response;
 
 public class ClassificationDataManager {
 
+    public int id=0;
+
     public static ClassificationDataManager getInstance() {
         return new ClassificationDataManager();
     }
 
-    public void saveClassification(Classification classification){
-        Log.e("INFO @@@", classification.getIdMovie()+ "  "+ classification.getValor()+ "  "+ classification.getIdUsuario());
+    public int saveClassification(Classification classification){
         MovieMappsService.getInstance().saveClassification(classification).enqueue(new Callback<ServiceResult>() {
             @Override
             public void onResponse(Call<ServiceResult> call, Response<ServiceResult> response) {
                 Call callResponse = call;
                 Response responseService = response;
-                Log.i("Good @@@@@", responseService.message());
+                //id = response.body().getIdCalificacion();
+                Log.i("Good @@@@@", response.body().getIdCalificacion().toString());
             }
 
             @Override
@@ -36,6 +38,26 @@ public class ClassificationDataManager {
                 Log.i("Bad","Error" + t.getMessage());
             }
         });
+        return id;
+    }
+
+    public int saveClassificationTwo(Classification classification){
+        Call<Classification> call= MovieMappsService.getInstance().saveClassificationTwo(classification);
+        call.enqueue(new Callback<Classification>() {
+            @Override
+            public void onResponse(Call<Classification> call, Response<Classification> response) {
+                Call callResponse = call;
+                Response responseService = response;
+                //id = response.body().getIdCalificacion();
+                Log.i("Good @@@@@", ""+response.body().getId());
+            }
+
+            @Override
+            public void onFailure(Call<Classification> call, Throwable t) {
+                Log.i("Bad","Error" + t.getMessage());
+            }
+        });
+        return id;
     }
 
 }

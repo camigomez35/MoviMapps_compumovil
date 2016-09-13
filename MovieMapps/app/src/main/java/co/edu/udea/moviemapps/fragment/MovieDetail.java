@@ -251,29 +251,29 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
         if(valorLike == 1) {
             likesCount = likesCount +1;
             likes.setText("Like: " + likesCount);
-            like.setEnabled(false);
-            dislike.setEnabled(true);
             if(!dislike.isEnabled()){
-                dislikesCount = dislikesCount -1;
-                dislikes.setText("Dislike: "+ dislikesCount);
                 actualizar(classification);
+                dislikesCount = dislikesCount-1;
+                dislikes.setText("Dislike: "+ dislikesCount);
             }else{
                 ClassificationDataManager.getInstance().saveClassification(classification);
             }
+            like.setEnabled(false);
+            dislike.setEnabled(true);
             setBackground();
             Toast.makeText(this.getContext(), "+1", Toast.LENGTH_SHORT).show();
         }else if(valorLike == 2){
             dislikesCount = dislikesCount +1;
             dislikes.setText("Dislike: "+ dislikesCount);
-            like.setEnabled(true);
-            dislike.setEnabled(false);
             if(!like.isEnabled()){
-                dislikesCount = likesCount -1;
-                likes.setText("Like: " + likesCount);
                 actualizar(classification);
+                likesCount = likesCount -1;
+                likes.setText("Like: " + likesCount);
             }else{
                 ClassificationDataManager.getInstance().saveClassification(classification);
             }
+            like.setEnabled(true);
+            dislike.setEnabled(false);
             setBackground();
             Toast.makeText(this.getContext(), "-1", Toast.LENGTH_SHORT).show();
         }
@@ -283,16 +283,16 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
         MovieMappsServiceI apiService = retrofit.create(MovieMappsServiceI.class);
         Call <Classification> call = apiService.updateClassification(idRelacion, classification);
         call.enqueue(new Callback<Classification>() {
-            @Override
-            public void onResponse(Call<Classification> call, Response<Classification> response) {
-                Log.e("Exitoso ", "onResponse: " );
-            }
+                         @Override
+                         public void onResponse(Call<Classification> call, Response<Classification> response) {
+                             Log.e("@@@@@HALP ", "onResponse: "+response.body() );
+                         }
+                         @Override
+                         public void onFailure(Call<Classification> call, Throwable t) {
 
-            @Override
-            public void onFailure(Call<Classification> call, Throwable t) {
-                Log.e("Error ", "onFailure: ");
-            }
-        });
+                         }
+                     }
+        );
     }
 
 }
