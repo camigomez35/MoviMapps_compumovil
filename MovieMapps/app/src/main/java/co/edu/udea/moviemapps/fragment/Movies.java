@@ -55,6 +55,7 @@ public class Movies extends Fragment implements OnItemMovieListener {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         new DownloadMovies().execute();
+
         listener = (OnFragmentInteractionListener) getActivity();
     }
 

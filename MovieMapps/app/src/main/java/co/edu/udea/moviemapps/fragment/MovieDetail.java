@@ -20,7 +20,9 @@ import org.mockito.internal.matchers.Null;
 import java.util.List;
 
 import co.edu.udea.moviemapps.R;
+import co.edu.udea.moviemapps.activities.MainActivity;
 import co.edu.udea.moviemapps.activities.MovieMapps;
+import co.edu.udea.moviemapps.listener.OnFragmentInteractionListener;
 import co.edu.udea.moviemapps.model.Classification;
 import co.edu.udea.moviemapps.model.CountClassification;
 import co.edu.udea.moviemapps.model.Movie;
@@ -46,9 +48,10 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
     public ImageButton like, dislike, checkLike, checkDislike;
     public TextView movieTitle, movieOverview, likes, dislikes;
     private int movieId, likesCount, dislikesCount;
-    private Button btShare;
+    private Button btShare, funcionButton;
     private String title, text;
     private List<Classification> classificationLikes;
+    private OnFragmentInteractionListener mListener;
 
 
     public static final String BASE_URL = "http://moviemappssw-samsax.c9users.io:8080/";
@@ -82,6 +85,7 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mListener = (OnFragmentInteractionListener) getActivity();
         moviePoster = (ImageView) view.findViewById(R.id.poster);
         movieOverview = (TextView) view.findViewById(R.id.overview);
         movieTitle = (TextView) view.findViewById(R.id.movie_title);
@@ -95,11 +99,12 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
         dislikes = (TextView) view.findViewById(R.id.dislikes);
 
 
-
         like.setOnClickListener(this);
         dislike.setOnClickListener(this);
         btShare = (Button) view.findViewById(R.id.share);
+        funcionButton = (Button)  view.findViewById(R.id.verFunciones);
         btShare.setOnClickListener(this);
+        funcionButton.setOnClickListener(this);
         new DownloadMovie().execute();
     }
 
@@ -107,7 +112,6 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.like:
-
                     like(1);
                 break;
             case R.id.dislike:
@@ -122,6 +126,11 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
                 shareIntent.setType("text/plain");
                 // Launch sharing dialog for image
                 startActivity(Intent.createChooser(shareIntent, "Share"));
+                break;
+            case R.id.verFunciones:
+                Bundle datos = new Bundle();
+                datos.putString("TITULO", title);
+                mListener.setFragment(Funciones.ID, datos, false);
                 break;
         }
     }

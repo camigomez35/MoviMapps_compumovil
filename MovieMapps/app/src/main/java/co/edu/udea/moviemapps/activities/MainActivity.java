@@ -15,6 +15,8 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
 import co.edu.udea.moviemapps.R;
+import co.edu.udea.moviemapps.fragment.Funciones;
+import co.edu.udea.moviemapps.fragment.InfoCompra;
 import co.edu.udea.moviemapps.fragment.Movies;
 import co.edu.udea.moviemapps.fragment.Login;
 import co.edu.udea.moviemapps.fragment.CinemasMap;
@@ -96,6 +98,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case CinemasMap.ID:
                 f= CinemasMap.newInstance();
+                break;
+            case Funciones.ID:
+                f = Funciones.newInstance();
+                break;
+            case InfoCompra.ID:
+                f = InfoCompra.newInstance();
                 break;
         }
 
