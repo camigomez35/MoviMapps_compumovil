@@ -19,13 +19,15 @@ public class FuncionDataManager extends DataManager {
     public static final int COL_ID = 0,
             COL_HORA = 1,
             COL_LUGAR = 2,
-            COL_SALA = 3;
+            COL_SALA = 3,
+            COL_PRECIO = 4;
 
     public static final String[] COLUMNS = {
             "id",
             "hora",
             "lugar",
-            "sala"
+            "sala",
+            "precio"
     };
 
     public FuncionDataManager(Context context) {
@@ -42,6 +44,7 @@ public class FuncionDataManager extends DataManager {
         funcion.setHora(cursor.getString(COL_HORA));
         funcion.setLugar(cursor.getString(COL_LUGAR));
         funcion.setSala(cursor.getString(COL_SALA));
+        funcion.setPrecio(cursor.getString(COL_PRECIO));
         return funcion;
     }
 

@@ -84,14 +84,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void setFragment(int fragmentId, Bundle parameters, boolean addStack) {
         Fragment f = null;
-
+        String titulo;
         switch (fragmentId) {
             case Movies.ID:
                 f = Movies.newInstance();
                 break;
             case MovieDetail.ID:
-                parameters.getString(MovieDetail.MOVIE_ARG_ID);
-                f = MovieDetail.newInstance(parameters.getString(MovieDetail.MOVIE_ARG_ID));
+                String arg1 = parameters.getString(MovieDetail.MOVIE_ARG_ID);
+                f = MovieDetail.newInstance(arg1);
                 break;
             case Login.ID:
                 f = Login.newInstance();
@@ -100,10 +100,16 @@ public class MainActivity extends AppCompatActivity
                 f= CinemasMap.newInstance();
                 break;
             case Funciones.ID:
-                f = Funciones.newInstance();
+                titulo = parameters.getString("TITULO");
+                f = Funciones.newInstance(titulo);
                 break;
             case InfoCompra.ID:
-                f = InfoCompra.newInstance();
+                titulo = parameters.getString("TITULO");
+                String lugar = parameters.getString("LUGAR");
+                String sala = parameters.getString("SALA");
+                String hora = parameters.getString("HORA");
+                String precio = parameters.getString("PRECIO");
+                f = InfoCompra.newInstance(titulo, lugar, hora, sala, precio);
                 break;
         }
 

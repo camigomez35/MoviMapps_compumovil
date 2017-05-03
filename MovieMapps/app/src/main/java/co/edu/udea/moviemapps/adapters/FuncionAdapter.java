@@ -1,23 +1,18 @@
 package co.edu.udea.moviemapps.adapters;
 
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import co.edu.udea.moviemapps.listener.OnItemFunctionListener;
 import co.edu.udea.moviemapps.model.Function;
-import co.edu.udea.moviemapps.util.MovieMappsUtils;
 
 import static co.edu.udea.moviemapps.R.id;
 import static co.edu.udea.moviemapps.R.layout;
-
 
 public class FuncionAdapter extends RecyclerView.Adapter<FuncionAdapter.ViewHolder> {
     private ArrayList<Function> funcion;
@@ -31,7 +26,7 @@ public class FuncionAdapter extends RecyclerView.Adapter<FuncionAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(layout.funciones_fragment, parent, false);
+                .inflate(layout.funcion_adapter, parent, false);
         return new ViewHolder(view);
     }
 
@@ -41,15 +36,16 @@ public class FuncionAdapter extends RecyclerView.Adapter<FuncionAdapter.ViewHold
 
             holder.funcionHora.setText("Hora: " + funcion.get(position).getHora());
             holder.funcionLugar.setText("Cine: "+String.valueOf(funcion.get(position).getLugar()));
-            holder.funcionSala.setText(String.valueOf(funcion.get(position).getSala()));
+            holder.funcionSala.setText(String.valueOf(funcion.get(position).getSala()) + " Precio: "
+                    + String.valueOf(funcion.get(position).getPrecio()));
 
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* if (listener != null) {
-                    listener.onItemClick(funcion.get(position), holder.itemView, position);
-                }*/
+            if (listener != null) {
+                listener.onItemClick(funcion.get(position), holder.itemView, position);
+            }
             }
         });
     }

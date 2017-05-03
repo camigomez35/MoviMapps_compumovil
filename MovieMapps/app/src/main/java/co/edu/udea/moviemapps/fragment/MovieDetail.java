@@ -62,7 +62,7 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
 
     public static MovieDetail newInstance(String movieId) {
         MovieDetail movieDetail = new MovieDetail();
-        movieDetail.movieId =Integer.valueOf(movieId);
+        movieDetail.movieId = Integer.valueOf(movieId);
         return movieDetail;
     }
 

@@ -17,7 +17,6 @@ import co.edu.udea.moviemapps.util.MovieMappsUtils;
 
 import static co.edu.udea.moviemapps.R.*;
 
-
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     private ArrayList<Movie> movies;
     private OnItemMovieListener listener;

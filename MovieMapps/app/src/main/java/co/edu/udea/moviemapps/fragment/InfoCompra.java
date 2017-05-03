@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import co.edu.udea.moviemapps.R;
@@ -17,20 +18,18 @@ public class InfoCompra extends Fragment implements View.OnClickListener {
     public static final String TITLE = "TITLE";
     public TextView movieTitle, info;
     private Button comprar;
-    private String text, nombrePelicula;
+    private String nombrePelicula, lugar, sala, hora, precio;
+    private ImageView codigoQR;
     private OnFragmentInteractionListener mListener;
 
-    public static InfoCompra newInstance() {
+    public static InfoCompra newInstance(String titulo, String lugar, String hora, String sala, String precio) {
         InfoCompra info = new InfoCompra();
+        info.nombrePelicula = titulo;
+        info.lugar = lugar;
+        info.hora = hora;
+        info.sala = sala;
+        info.precio = precio;
         return info;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            nombrePelicula = getArguments().getString(TITLE);
-        }
     }
 
     @Override
@@ -42,23 +41,29 @@ public class InfoCompra extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListener = (OnFragmentInteractionListener) getActivity();
-        info = (TextView) view.findViewById(R.id.overview);
-        movieTitle = (TextView) view.findViewById(R.id.movie_title);
 
-        comprar = (Button)  view.findViewById(R.id.verFunciones);
+        mListener = (OnFragmentInteractionListener) getActivity();
+        info = (TextView) view.findViewById(R.id.info);
+        movieTitle = (TextView) view.findViewById(R.id.movie_title);
+        codigoQR = (ImageView) view.findViewById(R.id.codigoqr);
+
+        comprar = (Button)  view.findViewById(R.id.comprar);
         comprar.setOnClickListener(this);
 
-        movieTitle.setText(nombrePelicula);
 
+        movieTitle.setText(nombrePelicula);
+        String texto = "Lugar: " + lugar + "\n Sala: " + sala+ "\n Hora: " + hora
+                + "\n Precio: " + precio;
+        System.out.println(texto);
+        info.setText(texto);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.comprar:
-                comprar.setText("Comprado");
-                comprar.invalidate();
+                codigoQR.setVisibility(View.VISIBLE);
+                comprar.setVisibility(View.INVISIBLE);
                 break;
         }
     }

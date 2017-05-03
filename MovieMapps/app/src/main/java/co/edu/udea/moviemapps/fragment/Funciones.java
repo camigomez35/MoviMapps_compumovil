@@ -22,17 +22,22 @@ import co.edu.udea.moviemapps.persistence.FuncionDataManager;
 public class Funciones extends Fragment implements View.OnClickListener, OnItemFunctionListener{
     public static final int ID =30;
     public static final String TITLE = "TITULO";
+    private String pelicula;
     RecyclerView rv;
     private RecyclerView.LayoutManager mLayoutManager;
     private OnFragmentInteractionListener mListener;
 
-    public static Funciones newInstance(){
-        return new Funciones();
+    public static Funciones newInstance(String titulo){
+        Funciones f = new Funciones();
+
+        f.pelicula = titulo;
+
+        return f;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.funcion_fragment, container, false);
+        return inflater.inflate(R.layout.funciones_fragment, container, false);
     }
 
     @Override
@@ -57,10 +62,14 @@ public class Funciones extends Fragment implements View.OnClickListener, OnItemF
         System.out.print("Hola Mundo");
 
         Bundle datos = new Bundle();
-        datos.putString("TITULO", TITLE);
+        datos.putString("TITULO", pelicula);
         datos.putString("LUGAR", funcion.getLugar());
         datos.putString("HORA", funcion.getHora());
         datos.putString("SALA", funcion.getSala());
+        datos.putString("PRECIO", funcion.getPrecio());
+
+        System.out.println(funcion.getLugar() + funcion.getHora());
+
         mListener.setFragment(InfoCompra.ID, datos, true);
     }
 
