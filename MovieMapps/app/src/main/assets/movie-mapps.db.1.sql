@@ -32,6 +32,7 @@ INSERT INTO cinema (name, latitude, longitude ) VALUES('Cine Colombia Los Molino
 INSERT INTO cinema (name, latitude, longitude ) VALUES('Procinal Puerta del norte', 6.339409599999999, -75.54321419999997);
 INSERT INTO cinema (name, latitude, longitude ) VALUES('Procinal Florida', 6.270901899999999, -75.57674639999999);
 INSERT INTO cinema (name, latitude, longitude ) VALUES('Royal Films Bosque Plaza', 6.268674619223301, -75.56475877761841);
+INSERT INTO cinema (name, latitude, longitude ) VALUES('Procinal Aventura', 6.264183999999999, -75.56703700000003);
 
 INSERT INTO funciones_table (hora, lugar, sala, precio) VALUES('3:30 p.m.', 'Cine Colombia Los Molinos', 'Sala 4', '$5.000');
 INSERT INTO funciones_table (hora, lugar, sala, precio) VALUES('4:30 p.m.', 'Procinal Florida', 'Sala 1', '$7.000');

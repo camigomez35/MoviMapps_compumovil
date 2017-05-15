@@ -53,7 +53,18 @@
             android:layout_gravity="center_horizontal"
             android:layout_toEndOf="@+id/poster"
             android:padding="10dp"
-            android:text="text" />
+            android:text="text"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/likeAdapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Like: 0/0"
+            android:textSize="14sp"
+            android:layout_alignBaseline="@+id/movie_length"
+            android:layout_alignBottom="@+id/movie_length"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

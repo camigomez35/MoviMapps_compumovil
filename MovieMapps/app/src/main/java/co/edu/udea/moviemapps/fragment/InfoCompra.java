@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import co.edu.udea.moviemapps.R;
 import co.edu.udea.moviemapps.listener.OnFragmentInteractionListener;
@@ -52,8 +53,8 @@ public class InfoCompra extends Fragment implements View.OnClickListener {
 
 
         movieTitle.setText(nombrePelicula);
-        String texto = "Lugar: " + lugar + "\n Sala: " + sala+ "\n Hora: " + hora
-                + "\n Precio: " + precio;
+        String texto = "Lugar: " + lugar + "\nSala: " + sala+ "\nHora: " + hora
+                + "\nPrecio: " + precio;
         System.out.println(texto);
         info.setText(texto);
     }
@@ -64,6 +65,7 @@ public class InfoCompra extends Fragment implements View.OnClickListener {
             case R.id.comprar:
                 codigoQR.setVisibility(View.VISIBLE);
                 comprar.setVisibility(View.INVISIBLE);
+                Toast.makeText(this.getContext(), "Compra Realizada", Toast.LENGTH_LONG).show();
                 break;
         }
     }

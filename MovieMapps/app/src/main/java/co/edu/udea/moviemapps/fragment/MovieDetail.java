@@ -43,14 +43,12 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
     public Integer idRelacion;
     public String apiKey = "d4aadc42b63f7a1565bffa6dd41f1bfc";
     public Classification classification;
-    public List<Classification> classifications;
     public ImageView moviePoster;
     public ImageButton like, dislike, checkLike, checkDislike;
     public TextView movieTitle, movieOverview, likes, dislikes;
     private int movieId, likesCount, dislikesCount;
     private Button btShare, funcionButton;
     private String title, text;
-    private List<Classification> classificationLikes;
     private OnFragmentInteractionListener mListener;
 
 
@@ -191,7 +189,6 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
         call.enqueue(new Callback<CountClassification>() {
             @Override
             public void onResponse(Call<CountClassification> call, Response<CountClassification> response) {
-                int statusCode = response.code();
                 CountClassification count = response.body();
                 if (value == 1) {
                     likesCount = count.getCount();
@@ -276,7 +273,7 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
             dislike.setEnabled(true);
             checkDislike.setVisibility(View.INVISIBLE);
             setBackground();
-            Toast.makeText(this.getContext(), "+1", Toast.LENGTH_SHORT).show();
+
         }else if(valorLike == 2){
             dislikesCount = dislikesCount +1;
             dislikes.setText("Dislike: "+ dislikesCount);
@@ -292,7 +289,6 @@ public class MovieDetail extends Fragment implements View.OnClickListener {
             dislike.setEnabled(false);
             checkDislike.setVisibility(View.VISIBLE);
             setBackground();
-            Toast.makeText(this.getContext(), "-1", Toast.LENGTH_SHORT).show();
         }
     }
 
