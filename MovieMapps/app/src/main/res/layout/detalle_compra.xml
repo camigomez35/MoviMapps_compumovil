@@ -52,16 +52,73 @@
             android:layout_width="273dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Buy"
+            android:text="Comprar"
             android:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/codigoqr"
+        <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_weight="430"
-            android:visibility="invisible"
-            app:srcCompat="@mipmap/qr" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <ImageView
+            android:id="@+id/poster"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:background="@drawable/sillas" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/texto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/poster"
+                    android:layout_centerHorizontal="true"
+                    android:text="Indique las sillas que desea: "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/numero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="Número" />
+                <Button
+                    android:id="@+id/seleccionar"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="273dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Seleccionar"
+                    android:visibility="visible" />
+                <TextView
+                    android:id="@+id/lista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Sillas: "
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="18sp" />
+                <Button
+                    android:id="@+id/finalizar"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="273dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Finalizar"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
     </LinearLayout>

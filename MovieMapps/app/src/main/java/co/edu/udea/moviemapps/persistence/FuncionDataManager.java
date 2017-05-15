@@ -44,7 +44,7 @@ public class FuncionDataManager extends DataManager {
         funcion.setHora(cursor.getString(COL_HORA));
         funcion.setLugar(cursor.getString(COL_LUGAR));
         funcion.setSala(cursor.getString(COL_SALA));
-        funcion.setPrecio(cursor.getString(COL_PRECIO));
+        funcion.setPrecio(cursor.getInt(COL_PRECIO));
         return funcion;
     }
 

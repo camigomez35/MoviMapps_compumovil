@@ -9,13 +9,13 @@ public class Function {
     private String hora;
     private String lugar;
     private String sala;
-    private String precio;
+    private int precio;
 
-    public String getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 

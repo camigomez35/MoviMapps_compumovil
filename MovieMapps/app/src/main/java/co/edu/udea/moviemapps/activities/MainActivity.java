@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
                 String lugar = parameters.getString("LUGAR");
                 String sala = parameters.getString("SALA");
                 String hora = parameters.getString("HORA");
-                String precio = parameters.getString("PRECIO");
+                int precio = parameters.getInt("PRECIO");
                 f = InfoCompra.newInstance(titulo, lugar, hora, sala, precio);
                 break;
         }

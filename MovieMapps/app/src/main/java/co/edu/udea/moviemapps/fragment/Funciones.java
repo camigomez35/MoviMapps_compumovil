@@ -21,7 +21,6 @@ import co.edu.udea.moviemapps.persistence.FuncionDataManager;
  */
 public class Funciones extends Fragment implements View.OnClickListener, OnItemFunctionListener{
     public static final int ID =30;
-    public static final String TITLE = "TITULO";
     private String pelicula;
     RecyclerView rv;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -50,6 +49,11 @@ public class Funciones extends Fragment implements View.OnClickListener, OnItemF
         rv.setLayoutManager(mLayoutManager);
         ArrayList<Function> fun = FuncionDataManager.getInstance().getAllFunciones();
 
+        for(int i=0; i<fun.size();i++){
+            System.out.println("Funcion: " + fun.get(i).getPrecio());
+
+        }
+
         FuncionAdapter adapter = new FuncionAdapter(fun, this);
         rv.setAdapter(adapter);
         rv.setOnClickListener(this);
@@ -59,14 +63,12 @@ public class Funciones extends Fragment implements View.OnClickListener, OnItemF
     @Override
     public void onItemClick(Function funcion, View view, int position) {
 
-        System.out.print("Hola Mundo");
-
         Bundle datos = new Bundle();
         datos.putString("TITULO", pelicula);
         datos.putString("LUGAR", funcion.getLugar());
         datos.putString("HORA", funcion.getHora());
         datos.putString("SALA", funcion.getSala());
-        datos.putString("PRECIO", funcion.getPrecio());
+        datos.putInt("PRECIO", funcion.getPrecio());
 
         System.out.println(funcion.getLugar() + funcion.getHora());
 

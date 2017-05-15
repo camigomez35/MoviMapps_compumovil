@@ -36,7 +36,7 @@ public class FuncionAdapter extends RecyclerView.Adapter<FuncionAdapter.ViewHold
 
             holder.funcionHora.setText("Hora: " + funcion.get(position).getHora());
             holder.funcionLugar.setText("Cine: "+String.valueOf(funcion.get(position).getLugar()));
-            holder.funcionSala.setText(String.valueOf(funcion.get(position).getSala()) + " Precio: "
+            holder.funcionSala.setText(String.valueOf(funcion.get(position).getSala()) + "   Precio: $"
                     + String.valueOf(funcion.get(position).getPrecio()));
 
         }
